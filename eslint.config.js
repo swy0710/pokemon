@@ -27,7 +27,7 @@ export default tseslint.config(
     },
     languageOptions: {
       parserOptions: {
-        project: ['./tsconfig.app.json'],
+        project: ['./tsconfig.app.json', './tsconfig.node.json'],
         tsconfigRootDir: process.cwd(),
       },
     },
@@ -242,4 +242,15 @@ export default tseslint.config(
    * [App / src root] — 레이어 제약 없음 (composition root)
    * App은 모든 레이어를 조합하는 진입점이다.
    */
+
+  /*
+   * [Config files] — default export 허용
+   * vite.config.ts 등 빌드 도구 설정 파일은 export default가 필수.
+   */
+  {
+    files: ['vite.config.ts', 'lint-staged.config.js'],
+    rules: {
+      'no-restricted-syntax': 'off',
+    },
+  },
 );
